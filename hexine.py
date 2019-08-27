@@ -17,12 +17,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def initUI(self):
+        self.ui.setWindowTitle("YARL v1.0.0 by stan")
+
         self.place = self.ui.hosting.findChildren(QtWidgets.QLabel, "placeLabel")[0]
         self.nameField = self.ui.hosting.findChildren(QtWidgets.QLineEdit, "usernameField")[0]
         self.title = self.ui.hosting.findChildren(QtWidgets.QLineEdit, "title")[0]
         self.selectPlace = self.ui.hosting.findChildren(QtWidgets.QPushButton, "placeButton")[0]
         self.ipField = self.ui.hosting.findChildren(QtWidgets.QLineEdit, "ipField")[0]
         self.portField = self.ui.hosting.findChildren(QtWidgets.QLineEdit, "portField")[0]
+        self.isPublic = self.ui.hosting.findChildren(QtWidgets.QCheckBox, "isPublic")[0]
         self.ui.versionSelector.addItems(self.launcher.getVersions())
         self.place.setText("Place: [None]")
 
@@ -38,19 +41,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.show()
 
     def playClicked(self):
-        if self.username == "":
+        if self.launcher.username == "":
             QtWidgets.QMessageBox.about(self, "Error", "Please enter your Roblonuim username.")
         else: 
             print(f"Joining as {str(self.username)}")
-            self.launcher.play(self.username, self.ipField.text(), self.portField.text())
+            self.launcher.play(self.ipField.text(), self.portField.text())
     
     def hostClicked(self):
-        if self.username == "":
+        if self.launcher.username == "":
             QtWidgets.QMessageBox.about(self, "Error", "Please enter your Roblonuim username.")
         elif self.title.text() == "":
              QtWidgets.QMessageBox.about(self, "Error", "The game needs a title.")
         else: 
-            self.launcher.host(None, self.title.text(), self.portField.text(), True, self.username)
+            self.launcher.host(None, self.title.text(), self.portField.text(), self.isPublic.isChecked())
 
     def updatePlace(self):
         options = QtWidgets.QFileDialog.Options()
@@ -61,8 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.place.setText(url.fileName())
 
     def updateUsername(self, value):
-        print(value)
-        self.username = value
+        self.launcher.username = value
 
     def updateVersion(self, value):
         self.launcher.setVersion(value)

@@ -151,13 +151,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="3">
-       <widget class="QPushButton" name="placeButton">
-        <property name="text">
-         <string>Choose Place File</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="1" colspan="4">
        <widget class="QLineEdit" name="title"/>
       </item>
@@ -170,6 +163,20 @@
       </item>
       <item row="3" column="1" colspan="4">
        <widget class="QLineEdit" name="usernameField"/>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="QPushButton" name="placeButton">
+        <property name="text">
+         <string>Choose Place File</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="isPublic">
+        <property name="text">
+         <string>Public Place</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
