@@ -58,6 +58,8 @@ class Launcher():
         else: 
             placeType = 0
         
+        placeName = placeName.replace(" ", "_")
+
         url = f'"http://hexine.tk/game/gameserver.ashx?placeId=0&serverPort={port}&publicPlace={placeType}&UserName={self.username}&placeName={placeName}&PS=0"'
         auth = '"http://hexine.tk/Login/Negotiate.ashx"'
         unknown = "0"
