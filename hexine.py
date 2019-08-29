@@ -59,9 +59,12 @@ class MainWindow(QtWidgets.QMainWindow):
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         placePath, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Open Place File", "","ROBLOX Place Files (*.rbxl)", options=options)
-        self.launcher.setPlace(placePath)
-        url = QtCore.QUrl.fromLocalFile(placePath)
-        self.place.setText(url.fileName())
+        if placePath:
+            self.launcher.setPlace(placePath)
+            url = QtCore.QUrl.fromLocalFile(placePath)
+            self.place.setText(url.fileName())
+        else:
+             return
 
     def updateUsername(self, value):
         self.launcher.username = value
